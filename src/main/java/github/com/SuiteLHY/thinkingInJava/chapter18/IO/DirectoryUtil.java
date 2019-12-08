@@ -1,9 +1,11 @@
 package github.com.SuiteLHY.thinkingInJava.chapter18.IO;
 
+import com.sun.istack.internal.NotNull;
 import github.com.SuiteLHY.thinkingInJava.DemoUtils;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,11 +19,12 @@ public final class DirectoryUtil {
 
     /**
      * 对文件目录下一层级的文件, 进行经过基于正则的文件过滤的文件选择
+     *
      * @param dir
      * @param regex
      * @return
      */
-    public static File[] local(File dir, final String regex) {
+    public static File[] local(@NotNull File dir, @NotNull final String regex) {
         return dir.listFiles(new FilenameFilter() {
             private Pattern pattern = Pattern.compile(regex);
             @Override
@@ -31,15 +34,48 @@ public final class DirectoryUtil {
         });
     }
 
-    public static File[] local(String path, String regex) {
+    /**
+     * 对文件目录下第一层级的文件, 进行经过基于正则的文件过滤的文件选择
+     *
+     * @param path
+     * @param regex
+     * @return
+     */
+    public static File[] local(@NotNull String path, @NotNull String regex) {
         return local(new File(path), regex);
     }
 
+    /**
+     * 对文件目录下所有层级的文件, 进行经过基于正则的文件过滤的文件选择
+     *
+     * @param dir
+     * @param regex
+     * @return
+     */
+    public static List<File> localAll(@NotNull File dir, @NotNull String regex) {
+        return new TreeInfo(dir, regex).files;
+    }
+
+    public static List<File> localAll(@NotNull String path, @NotNull String regex) {
+        return localAll(new File(path), regex);
+    }
+
+    /**
+     * 文件和目录信息类
+     */
     public static class TreeInfo {
 
+        // 目录集合
         public List<File> directories = new ArrayList<>();
 
+        // 文件集合
         public List<File> files = new ArrayList<>();
+
+        public TreeInfo() {}
+
+        public TreeInfo(File startDir, String regex) {
+            recurseTreeInfo(startDir, regex);
+        }
 
         public Iterator<File> iterator() {
             return files.iterator();
@@ -84,6 +120,13 @@ public final class DirectoryUtil {
             return walk(start, ".*");
         }
 
+        /**
+         * 递归抓取文件夹下所有层级的文件夹，以及符合正则匹配的文件
+         *
+         * @param startDir
+         * @param regex
+         * @return
+         */
         static TreeInfo recurseDirs(File startDir, String regex) {
             TreeInfo result = new TreeInfo();
             for (File item : startDir.listFiles()) {
@@ -95,6 +138,25 @@ public final class DirectoryUtil {
                 }
             }
             return result;
+        }
+
+        /**
+         * 递归抓取文件夹下所有层级的文件夹，以及符合正则匹配的文件
+         * 用于构造 <code>TreeInfo</code> 对象
+         *
+         * @param startDir
+         * @param regex
+         */
+        private void recurseTreeInfo(File startDir, String regex) {
+            for (File item : startDir.listFiles()) {
+                if (item.isDirectory()) {
+                    this.directories.add(item);
+                    // 递归
+                    recurseTreeInfo(item, regex);
+                } else if (item.getName().matches(regex)) {
+                    this.files.add(item);
+                }
+            }
         }
 
     }

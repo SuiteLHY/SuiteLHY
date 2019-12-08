@@ -8,7 +8,12 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.util.Assert;
 
 import java.io.File;
+import java.io.IOException;
 
+/**
+ * chapter18.IO, Test entry
+ *
+ */
 @SpringBootTest
 public class IOApplicationTests {
 
@@ -54,6 +59,29 @@ public class IOApplicationTests {
     @Test
     void processFiles() {
         ProcessFiles.demo();
+    }
+
+    @Test
+    void randomAccessFile() throws IOException {
+    }
+
+    @Test
+    void typicalUsesOfIOStreams() throws IOException {
+       /* DemoUtils.show("The result of TypicalUsesOfIOStreams.BufferedInputFile.demo():");
+        TypicalUsesOfIOStreams.BufferedInputFile.demo();
+        DemoUtils.show(null);
+
+        DemoUtils.show("The result of TypicalUsesOfIOStreams.MemoryInput.demo():");
+        TypicalUsesOfIOStreams.MemoryInput.demo();
+        DemoUtils.show(null);
+
+        DemoUtils.show("The result of TypicalUsesOfIOStreams.FormattedMemoryInput.demo():");
+        TypicalUsesOfIOStreams.FormattedMemoryInputUtil.demo();
+        DemoUtils.show(null);*/
+
+        DemoUtils.show("The result of TypicalUsesOfIOStreams.BasicFileOutputUtil.demo():");
+        TypicalUsesOfIOStreams.BasicFileOutputUtil.demo();
+        DemoUtils.show(null);
     }
 
 }

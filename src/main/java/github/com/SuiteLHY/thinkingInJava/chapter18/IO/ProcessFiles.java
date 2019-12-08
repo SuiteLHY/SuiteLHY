@@ -21,12 +21,15 @@ public class ProcessFiles {
         void process(File file);
     }
 
+    // 自定义操作接口的实现
     private Strategy strategy;
 
+    // 正则表达式
     private String regex;
 
     /**
      * 构造方法
+     *
      * @param strategy
      * @param regex
      */
@@ -36,7 +39,8 @@ public class ProcessFiles {
     }
 
     /**
-     * 对文件夹下一层级的文件, 进行基于正则的文件过滤, 最后执行
+     * 对文件夹下一层级的文件, 进行基于正则的文件过滤, 最后执行自定义的操作
+     *
      * @param root
      * @throws IOException
      */
@@ -47,6 +51,11 @@ public class ProcessFiles {
         }
     }
 
+    /**
+     * 遍历文件并执行自定义操作
+     *
+     * @param paths
+     */
     public void start(@NotNull String[] paths) {
         try {
             for (String path : paths) {
@@ -61,6 +70,11 @@ public class ProcessFiles {
         }
     }
 
+    /**
+     * 遍历文件并执行自定义操作
+     *
+     * @param files
+     */
     public void start(@NotNull File[] files) {
         try {
             for (File file : files) {
@@ -74,6 +88,12 @@ public class ProcessFiles {
         }
     }
 
+    /**
+     * 对指定的文件，或文件夹下的所有层级的文件，执行自定义操作
+     *
+     * @param file
+     * @throws IOException
+     */
     private void handle(@NotNull File file) throws IOException {
         if (file.isDirectory()) {
             /*processDirectoryTree(file);
@@ -95,7 +115,7 @@ public class ProcessFiles {
                 public void process(File file) {
                     DemoUtils.show(file.getName());
                 }
-            }, "[A-Z][a-zA-Z\\d_]*.java").start(new String[]{"."});
+            }, "[A-Z][a-zA-Z\\d_]*.java").start(new String[] {"."});
         } catch (Exception e) {
             e.printStackTrace();
         }
