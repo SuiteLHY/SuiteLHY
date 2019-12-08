@@ -304,17 +304,16 @@ public class TypicalUsesOfIOStreams {
                         new StringReader(fileData)
                 );
                 //=== 实现基本的文件输出 ===//
-                String testFilePath = getTestFilePath();
-                File testFile = new File(testFilePath);
-                if (!testFile.exists()) {
-                    testFile.createNewFile();
-                }
+                File testFile = getTestFile();
                 // 输出流
                 PrintWriter out = null;
                 try {
+                    /*// 业务冗余：包含了不必要的装饰工作
                     out = new PrintWriter(
                             new BufferedWriter(new FileWriter(testFilePath))
-                    );
+                    );*/
+                    /*out = new PrintWriter(testFilePath);*/
+                    out = new PrintWriter(testFile);
                     int lineCount = 0;
                     for (String each; null != (each = in.readLine()); ) {
                         out.println(each);
@@ -341,8 +340,120 @@ public class TypicalUsesOfIOStreams {
 
     }
 
-    static String getTestFilePath() {
-        return "src\\main\\resources\\test\\test.java";
+    /**
+     * 实现按照Java的UTF-8编码格式，存储和恢复数据
+     *
+     * 注意：按照指定格式读写数据，应该是整个文件的数据使用统一的格式。
+     * 另外，对象序列化和XML，可能更容易实现和控制的存储和读取复杂数据结构的方式。
+     */
+    public static class StoringAndRecoveringData {
+
+        public static void demo() {
+            DataOutputStream out = null;
+            //=== 实现数据存储：将数据按照Java的UTF-8编码格式写入输出流 ===//
+            try {
+                out = new DataOutputStream(
+                        new BufferedOutputStream(new FileOutputStream(getTestTxt()))
+                );
+                out.writeDouble(3.14159);
+                // 将数据按照Java的UTF-8编码格式写入流
+                out.writeUTF("\nA new line\n");
+                out.writeInt(978153);
+                out.writeUTF("Square root of 2");
+                out.writeUTF("=====");
+                out.writeUTF("3.14159");
+                out.writeUTF("978153");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (null != out) {
+                    try {
+                        out.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            //=== 实现数据恢复：从输入流中读取符合Java的UTF-8编码格式的数据 ===//
+            DataInputStream in = null;
+            try {
+                in = new DataInputStream(
+                        new BufferedInputStream(new FileInputStream(getTestTxt()))
+                );
+                DemoUtils.show(in.readDouble());
+                // Only readUTF() will recover the Java-UTF String properly
+                DemoUtils.show(in.readUTF());
+                DemoUtils.show(in.readInt());
+                DemoUtils.show(in.readUTF());
+                DemoUtils.show(in.readUTF());
+                DemoUtils.show(in.readUTF());
+                DemoUtils.show(in.readUTF());
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                if (null != in) {
+                    try {
+                        in.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
+    }
+
+    /**
+     * 测试文件信息类
+     */
+    private static class Test {
+        static final String testFilePath = "src\\main\\resources\\test\\test.java";
+        static final String testTxtPath = "src\\main\\resources\\test\\test.txt";
+        // 通过【单例模式 - 饿汉式】进行初始化
+        static final File testFile = new File(testFilePath);
+        static final File testTxt = new File(testTxtPath);
+        static File getTestFile() throws IOException {
+            return getFile(testFile);
+        }
+        static File getTestTxt() throws IOException {
+            return getFile(testTxt);
+        }
+        private static File getFile(File file) throws IOException {
+            if (!file.exists()) {
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    throw e;
+                }
+            }
+            return file;
+        }
+    }
+
+    private static String getTestFilePath() {
+        return Test.testFilePath;
+    }
+
+    static File getTestFile() {
+        try {
+            return Test.getTestFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    static File getTestTxt() {
+        try {
+            return Test.getTestTxt();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

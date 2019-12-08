@@ -67,7 +67,7 @@ public class IOApplicationTests {
 
     @Test
     void typicalUsesOfIOStreams() throws IOException {
-       /* DemoUtils.show("The result of TypicalUsesOfIOStreams.BufferedInputFile.demo():");
+        /*DemoUtils.show("The result of TypicalUsesOfIOStreams.BufferedInputFile.demo():");
         TypicalUsesOfIOStreams.BufferedInputFile.demo();
         DemoUtils.show(null);
 
@@ -81,6 +81,10 @@ public class IOApplicationTests {
 
         DemoUtils.show("The result of TypicalUsesOfIOStreams.BasicFileOutputUtil.demo():");
         TypicalUsesOfIOStreams.BasicFileOutputUtil.demo();
+        DemoUtils.show(null);
+
+        DemoUtils.show("The result of TypicalUsesOfIOStreams.StoringAndRecoveringData.demo():");
+        TypicalUsesOfIOStreams.StoringAndRecoveringData.demo();
         DemoUtils.show(null);
     }
 
