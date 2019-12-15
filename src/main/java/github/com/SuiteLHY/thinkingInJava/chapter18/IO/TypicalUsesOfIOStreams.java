@@ -408,6 +408,74 @@ public class TypicalUsesOfIOStreams {
     }
 
     /**
+     * 实现随机地访问和读写文件 - 示例类
+     *
+     * 使用 <code>RandomAccessFile</code>
+     */
+    public static class UsingRandomAccessFile {
+
+        public static void demo() throws IOException {
+            DemoUtils.show("===== ↓↓↓ UsingRandomAccessFile.demo() ↓↓↓ =====");
+            RandomAccessFile randomAccessFile = null;
+            try {
+                randomAccessFile = new RandomAccessFile(getTestFile(), "r");
+                String each;
+                for (long i = 1; null != (each = randomAccessFile.readLine()); i++) {
+                    DemoUtils.show(((i < 1000)
+                            ? ((i < 100) ? ((i < 10) ? "000" : "00") : "0")
+                            : "")
+                            + i + " | " + each
+                    );
+                }
+            } catch (FileNotFoundException e) {
+                throw e;
+            } catch (IOException e) {
+                throw e;
+            } finally {
+                if (null != randomAccessFile) {
+                    try {
+                        randomAccessFile.close();
+                    } catch (IOException e) {
+                        throw e;
+                    }
+                }
+            }
+            DemoUtils.show("===== ↑↑↑ UsingRandomAccessFile.demo() ↑↑↑ =====");
+        }
+
+        public static void demo1() throws IOException {
+            DemoUtils.show("===== ↓↓↓ UsingRandomAccessFile.demo1() ↓↓↓ =====");
+            RandomAccessFile randomAccessFile = null;
+            try {
+                randomAccessFile = new RandomAccessFile(getTestFile(), "rw");
+                String each;
+                for (long i = 1; null != (each = randomAccessFile.readLine()); i++) {
+                    DemoUtils.show(((i < 1000)
+                            ? ((i < 100) ? ((i < 10) ? "000" : "00") : "0")
+                            : "")
+                            + i + " | " + each
+                    );
+                }
+                randomAccessFile.writeUTF("/* random written content */");
+            } catch (FileNotFoundException e) {
+                throw e;
+            } catch (IOException e) {
+                throw e;
+            } finally {
+                if (null != randomAccessFile) {
+                    try {
+                        randomAccessFile.close();
+                    } catch (IOException e) {
+                        throw e;
+                    }
+                }
+            }
+            DemoUtils.show("===== ↑↑↑ UsingRandomAccessFile.demo1() ↑↑↑ =====");
+        }
+
+    }
+
+    /**
      * 测试文件信息类
      */
     private static class Test {

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ===== Spring DI ===== -->
+    <bean id="textEditor" class="spring.example.SpringDI.TextEditor">
+        <constructor-arg ref="spellChecker"/>
+    </bean>
+
+    <bean id="spellChecker" class="spring.example.SpringDI.SpellChecker" />
+
+    <bean id="exampleBean" class="spring.example.SpringDI.ExampleBean">
+        <constructor-arg type="java.lang.String" value="aaa"/>
+        <constructor-arg type="int" value="9001"/>
+    </bean>
+
+    <!-- === 注入内部Beans === -->
+    <bean id="outerBean" class="spring.example.SpringDI.OuterBean">
+        <property name="innerBean">
+            <bean id="innerBean" class="spring.example.SpringDI.InnerBean" />
+        </property>
+    </bean>
+
+    <!-- === 注入集合 === -->
+    <bean id="addressCollection" class="spring.example.SpringDI.AddressCollection">
+        <property name="addressNameList">
+            <list>
+                <value>China</value>
+                <value>USA</value>
+                <value>Japan</value>
+                <value>Europe</value>
+            </list>
+        </property>
+        <property name="addressNameSet">
+            <set>
+                <value>China</value>
+                <value>China</value>
+                <value>USA</value>
+                <value>USA</value>
+                <value>Japan</value>
+                <value>Japan</value>
+                <value>Europe</value>
+            </set>
+        </property>
+        <property name="addressInfoMap">
+            <map>
+                <entry key="001" value="China"/>
+                <entry key="002" value="USA"/>
+                <entry key="003" value="Japan"/>
+                <entry key="004" value="Europe"/>
+            </map>
+        </property>
+        <property name="addressProperties">
+            <!-- 不建议使用<props>标签 -->
+            <props>
+                <prop key="1">China</prop>
+                <prop key="2">USA</prop>
+                <prop key="3">Japan</prop>
+                <prop key="4">Europe</prop>
+            </props>
+        </property>
+        <!-- == 注入持有 Bean 引用的集合;注意:<props>标签结构不支持引用 == -->
+        <property name="addressList">
+            <list>
+                <ref bean="address1"/>
+                <ref bean="address2"/>
+                <ref bean="address3"/>
+                <ref bean="address4"/>
+            </list>
+        </property>
+        <property name="addressSet">
+            <set>
+                <ref bean="address1"/>
+                <ref bean="address2"/>
+                <ref bean="address3"/>
+                <ref bean="address4"/>
+            </set>
+        </property>
+        <property name="addressMap">
+            <map>
+                <entry key="001" value-ref="address1"/>
+                <entry key="002" value-ref="address2"/>
+                <entry key="003" value-ref="address3"/>
+                <entry key="004" value-ref="address4"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="address" class="spring.example.SpringDI.Address" abstract="true">
+        <property name="name" value=""/>
+        <property name="country" value=""/>
+        <property name="postcode" value=""/>
+    </bean>
+
+    <bean id="address1" class="spring.example.SpringDI.Address" parent="address">
+        <property name="name" value="China"/>
+        <property name="country" value="中国"/>
+        <property name="postcode" value="100000"/>
+    </bean>
+
+    <bean id="address2" class="spring.example.SpringDI.Address" parent="address">
+        <property name="name" value="USA"/>
+        <property name="country" value="美国"/>
+    </bean>
+
+    <bean id="address3" class="spring.example.SpringDI.Address" parent="address">
+        <property name="name" value="Japan"/>
+        <property name="country" value="日本"/>
+    </bean>
+
+    <bean id="address4" class="spring.example.SpringDI.Address" parent="address">
+        <property name="name" value="Europe"/>
+        <property name="country" value="欧洲"/>
+    </bean>
+
+</beans>

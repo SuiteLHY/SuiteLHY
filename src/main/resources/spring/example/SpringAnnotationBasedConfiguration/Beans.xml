@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- 使用基于注解的配置 -->
+    <context:annotation-config/>
+
+    <!-- ===== Spring Annotation-based configuration ===== -->
+    <bean id="textEditor" class="spring.example.SpringAnnotationBasedConfiguration.TextEditor" />
+
+    <bean id="spellChecker" class="spring.example.SpringAnnotationBasedConfiguration.SpellChecker" />
+
+    <bean id="exampleBean" class="spring.example.SpringAnnotationBasedConfiguration.ExampleBean">
+        <constructor-arg type="java.lang.String" value="aaa"/>
+        <constructor-arg type="int" value="9001"/>
+    </bean>
+
+    <!-- === 注入内部Beans ———— 使用注解实现 === -->
+    <bean id="outerBean" class="spring.example.SpringAnnotationBasedConfiguration.OuterBean" />
+
+    <bean id="innerBean" class="spring.example.SpringAnnotationBasedConfiguration.InnerBean" />
+
+    <!-- === Spring @Qualifier 注释 === -->
+    <bean id="profile" class="spring.example.SpringAnnotationBasedConfiguration.Profile" />
+
+    <bean id="student1" class="spring.example.SpringAnnotationBasedConfiguration.Student">
+        <property name="name" value="张三"/>
+        <property name="age" value="16"/>
+    </bean>
+
+    <bean id="student2" class="spring.example.SpringAnnotationBasedConfiguration.Student">
+        <property name="name" value="李四"/>
+        <property name="age" value="17"/>
+    </bean>
+
+    <!-- === Spring JSR-250 注释 ===-->
+    <!-- @PostConstruct 和 @PreDestroy 注释 -->
+    <bean id="helloWorld" class="spring.example.SpringAnnotationBasedConfiguration.HelloWorld"
+          init-method="init" destroy-method="destroy">
+        <property name="message" value="Hello World!"/>
+    </bean>
+
+</beans>

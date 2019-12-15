@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ===== Spring IoC ===== -->
+    <bean id="beanTeamplate" abstract="true">
+        <property name="message1" value="Hello!"/>
+        <property name="message2" value="Good morning!"/>
+        <property name="message3" value="Good night!"/>
+    </bean>
+
+    <bean id="helloWorld" class="spring.example.SpringIoC.HelloWorld" scope="prototype">
+        <property name="message1" value="Hello World!"/>
+        <property name="message2" value="Good morning!"/>
+    </bean>
+
+    <bean class="spring.example.SpringIoC.InitHelloWorld" />
+
+    <bean id="helloChina" class="spring.example.SpringIoC.HelloChina" scope="prototype"
+          parent="beanTeamplate">
+        <property name="message2" value="Good morning, China!"/>
+        <property name="message3" value="Good night, China!"/>
+    </bean>
+
+</beans>

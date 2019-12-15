@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- Model Beans -->
+    <bean id="student" class="spring.example.SpringAOP.model.Student">
+        <property name="name" value="LiMing"/>
+        <property name="age" value="18"/>
+    </bean>
+
+    <!-- Aspect Beans -->
+    <bean id="logging" class="spring.example.SpringAOP.xmlBasedAOP.aspect.Logging" />
+
+    <!-- AOP specific configuration -->
+    <aop:config>
+        <!-- 声明一个 aspect ———— 对应 Bean -->
+        <aop:aspect id="logAspect" ref="logging">
+            <!-- 声明一个切入点 ———— 对应方法 -->
+            <aop:pointcut id="selectAll"
+                    expression="execution(* spring.example.SpringAOP.model.*.*(..))"/>
+
+            <!-- === 通知（五种类型）必须要绑定切点（也就是方法） === -->
+            <!-- a before advice definition -->
+            <aop:before pointcut-ref="selectAll" method="beforeAdvice"/>
+
+            <!-- an after advice definition -->
+            <aop:after pointcut-ref="selectAll" method="afterAdvice"/>
+
+            <!-- an after-returning advice definition -->
+            <!-- -> The doRequiredTask method must have parameter named retVal -->
+            <aop:after-returning pointcut-ref="selectAll" returning="retVal"
+                                method="afterReturningAdvice"/>
+
+            <!-- an after-throwing advice definition -->
+            <!--The doRequiredTask method must have parameter named ex -->
+            <aop:after-throwing pointcut-ref="selectAll" throwing="ex"
+                                method="afterThrowingAdvice"/>
+
+            <!-- an around advice definition -->
+            <!--<aop:around pointcut-ref="selectAll" method="aroundAdvice"/>-->
+        </aop:aspect>
+    </aop:config>
+
+</beans>
