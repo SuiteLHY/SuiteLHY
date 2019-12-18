@@ -1,4 +1,4 @@
-package spring.example.SpringJDBC.model;
+package spring.example.SpringJDBC.entity;
 
 public class Student {
 
@@ -8,9 +8,13 @@ public class Student {
 
     private Integer id;
 
+    public boolean isEmpty() {
+        return null == id || null == age || null == name;
+    }
+
     @Override
     public String toString() {
-        return "{id=" + id
+        return isEmpty() ? "{}" : "{id=" + id
                 + ", name=" + name
                 + ", age=" + age + "}";
     }
