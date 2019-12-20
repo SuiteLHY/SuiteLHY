@@ -10,7 +10,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-    <!-- Initialization for data source -->
+    <!-- Data Source bean -->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url"
@@ -19,24 +19,26 @@
         <property name="password" value="123456"/>
     </bean>
 
+    <!-- TransactionManager config -->
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="insert"/>
         </tx:attributes>
     </tx:advice>
 
+    <!-- Aspect config -->
     <aop:config>
         <aop:pointcut id="createOperation"
                       expression="execution(* spring.example.SpringJDBC.dao.StudentDaoImpl.insert(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="createOperation"/>
     </aop:config>
 
-    <!-- Initialization for TransactionManager -->
+    <!-- TransactionManager bean -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <!-- Definition for studentJDBCTemplate bean -->
+    <!-- StudentDaoImpl bean -->
     <bean id="studentJDBCTemplate" class="spring.example.SpringJDBC.dao.StudentDaoImpl">
         <property name="dataSource" ref="dataSource" />
     </bean>

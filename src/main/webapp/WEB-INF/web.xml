@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+
+    <!-- 注意, 在 Spring boot 下"约定大于配置" -->
+
+    <display-name>Spring Web MVC Application</display-name>
+
+    <!-- 配置 Spring MVC Servlet(前端控制器) -->
+    <!-- 备注: DispatcherServlet 加载时需要一个 Spring MVC 的配置文件，默认为 WEB-INF 路径下的 [servlet-name]-servlet.xml 文件 -->
+    <servlet>
+        <servlet-name>SpringMVC</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <!-- 备注: Spring MVC 的配置文件可以放在任何地方，通过 servlet 的子元素 init-param 描述即可 -->
+        <!-- Spring MVC 的配置文件路径 -->
+        <init-param>
+            <!-- 参数名称: contextConfigLocation -->
+            <param-name>contextConfigLocation</param-name>
+            <!-- 参数值: [Spring MVC 的配置文件路径] -->
+            <param-value>classpath:spring/example/SpringWebMVC/spring-mvc.xml</param-value>
+        </init-param>
+        <!-- 在 Web 应用启动时立即加载 Servlet -->
+        <load-on-startup>1</load-on-startup>
+        <!-- 在 Servlet 上启用异步支持 -->
+        <!--<async-supported>true</async-supported>-->
+    </servlet>
+    <!-- Spring MVC Servlet 映射配置 -->
+    <servlet-mapping>
+        <!-- (对应 Servlet 配置名称) -->
+        <servlet-name>SpringMVC</servlet-name>
+        <!-- 监听当前域的所有请求 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <!-- 监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+</web-app>

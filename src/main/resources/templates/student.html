@@ -1,0 +1,36 @@
+<!-- Thymeleaf - 表单提交功能实现, 参考<a href="https://blog.csdn.net/yelllowcong/article/details/79830468">
+【CSDN】Springboot之Thymeleaf 表单标签（表单提交）|第二章-yellowcong</a> -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Student</title>
+</head>
+<body>
+    <form method="POST" action="#"
+          th:action="@{/student/register}" th:object="${studentInfo}">
+        <table>
+            <tr>
+                <td><label path="id">id</label></td>
+                <!--<td><input path="id" th:value="${studentInfo.id}" /></td>-->
+                <td><input type="text" th:field="*{id}" /></td>
+            </tr>
+            <tr>
+                <td><label path="name">Name</label></td>
+                <!--<td><input path="name" th:value="${studentInfo.name}" /></td>-->
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td><label path="age">Age</label></td>
+                <!--<td><input path="age" th:value="${studentInfo.age}" /></td>-->
+                <td><input type="text" th:field="*{age}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Submit"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
