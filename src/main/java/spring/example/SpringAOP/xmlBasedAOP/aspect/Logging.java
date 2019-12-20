@@ -7,7 +7,7 @@ public class Logging {
      * before a selected method execution.
      */
     public void beforeAdvice() {
-        System.out.println("[Before Advice] Going to setup student profile.");
+        System.out.println("[Before Advice] Going to setup studentInfo profile.");
     }
 
     /**
@@ -41,7 +41,7 @@ public class Logging {
      * around a selected method execution.
      */
     /*public void aroundAdvice() {
-        System.out.println("[Around Advice] A advice around student profile.");
+        System.out.println("[Around Advice] A advice around studentInfo profile.");
     }*/
 
 }

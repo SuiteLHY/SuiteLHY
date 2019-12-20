@@ -15,7 +15,7 @@ public class Application {
                 new ClassPathXmlApplicationContext("spring/example/SpringAOP/annotationBasedAOP/Beans.xml");
         System.out.println("=====");
 
-        Student student = context.getBean("student", Student.class);
+        Student student = context.getBean("studentInfo", Student.class);
         student.getName();
         student.getAge();
         try {
