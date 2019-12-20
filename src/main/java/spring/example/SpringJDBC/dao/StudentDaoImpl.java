@@ -53,7 +53,7 @@ public class StudentDaoImpl implements StudentDao {
         try {
             String SQL1 = "insert into Student (name, age) values (?, ?)";
             singleJdbcTemplate().update(SQL1, name, age);
-            // Get the latest student id to be used in Marks table
+            // Get the latest studentInfo id to be used in Marks table
             String SQL2 = "select max(id) from Student";
             Integer sid = singleJdbcTemplate().queryForObject(SQL2, Integer.class);
             String SQL3 = "insert into Marks(sid, marks, year) "

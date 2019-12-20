@@ -1,4 +1,4 @@
-package spring.example;
+package spring.example.SpringJDBC;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
