@@ -1,0 +1,18 @@
+<!-- 参阅<a href="https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html">
+Thymeleaf 官方文档</a> -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>自定义异常处理结果</title>
+</head>
+<body th:with="ex=${#request.getAttribute('ex')}">
+    <!--<% Exception e = (Exception)request.getAttribute("ex"); %>-->
+    <H2>业务错误: [[${ex.getClass().getSimpleName()}]]</H2>
+    <hr />
+    <P>错误描述：</P>
+    [[${ex.getMessage()}]]
+    <P>错误信息：</P>
+    <!--<% e.printStackTrace(new java.io.PrintWriter(out)); %>-->[[${exStackTrace}]]
+</body>
+</html>
