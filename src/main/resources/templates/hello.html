@@ -7,5 +7,13 @@
 <body>
     <!--/*@thymesVar id="message" type="java.lang.String"*/-->
     <p th:text="${message}" />
+
+    <form method="GET" action="#" th:action="@{/hello/redirectPage}">
+        <table>
+            <tr>
+                <td><input type="submit" value="页面重定向" /></td>
+            </tr>
+        </table>
+    </form>
 </body>
 </html>
