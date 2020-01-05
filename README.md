@@ -7,3 +7,8 @@
 ### JAVA生态
 - 各个开发领域：[eugenp/tutorials: Just Announced - "Learn Spring Security OAuth":](https://github.com/eugenp/tutorials)
 ---
+### Spring
+- Spring boot: 除了官网提供的资料以外, 
+  - 上手微项目: 
+    - 【☆】[ityouknow/spring-boot-examples: about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。](https://github.com/ityouknow/spring-boot-examples)
+---
