@@ -8,6 +8,10 @@
 - 各个开发领域：[eugenp/tutorials: Just Announced - "Learn Spring Security OAuth":](https://github.com/eugenp/tutorials)
 ---
 ### Spring 生态
+- Spring上手查阅：
+  - [Spring开发团队](https://github.com/spring-projects)
+  - [Spring官方网站](https://spring.io/projects)
+  - [Spring官方文档中文版](https://www.springcloud.cc/spring-reference.html)
 - Spring boot: 除了官网提供的资料以外:
   - 学习资源和微项目: 
     - 【☆】[ityouknow/spring-boot-examples: about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。](https://github.com/ityouknow/spring-boot-examples)
