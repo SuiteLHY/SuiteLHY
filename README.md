@@ -9,6 +9,7 @@
 ---
 ### Spring 生态
 - Spring上手查阅：
+  - 【☆】[Guides - spring.io](https://spring.io/guides)
   - 【☆】[Spring开发团队](https://github.com/spring-projects)
   - 【☆】[Spring官方网站](https://spring.io/projects)
   - [Spring官方文档中文版](https://www.springcloud.cc/spring-reference.html)
