@@ -21,6 +21,8 @@
     - 【Docs】
       - [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/)
   - Spring boot
+    - 【Docs】
+      - [Index of /spring-boot/docs](https://docs.spring.io/spring-boot/docs/)
     - 学习资源和微项目: 
       - 【☆】[ityouknow/spring-boot-examples: about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。](https://github.com/ityouknow/spring-boot-examples)
   - Spring Security
