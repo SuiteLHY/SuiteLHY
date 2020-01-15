@@ -17,13 +17,13 @@
     - 【☆】[spring-projects/spring-framework](https://github.com/spring-projects/spring-framework)
     - 【☆】[spring-projects/spring-boot](https://github.com/spring-projects/spring-boot)
 - Spring 产品:
-  - Spring Framework:
+  - Spring Framework
     - 【Docs】
       - [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/)
-  - Spring boot:
+  - Spring boot
     - 学习资源和微项目: 
       - 【☆】[ityouknow/spring-boot-examples: about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。](https://github.com/ityouknow/spring-boot-examples)
-  - Spring Security:
+  - Spring Security
     - 【Docs】
       - [Spring Security](https://spring.io/projects/spring-security#learn)
 ---
