@@ -26,4 +26,6 @@
   - Spring Security
     - 【Docs】
       - [Spring Security](https://spring.io/projects/spring-security#learn)
+    - 【Guide】
+      - [Getting Started · Securing a Web Application](https://spring.io/guides/gs/securing-web/)
 ---
