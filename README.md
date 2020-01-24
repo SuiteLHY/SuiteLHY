@@ -16,6 +16,8 @@
   - Spring官方demo项目:
     - 【☆】[spring-projects/spring-framework](https://github.com/spring-projects/spring-framework)
     - 【☆】[spring-projects/spring-boot](https://github.com/spring-projects/spring-boot)
+- Spring 社区:
+  - 【☆】[Spring For All 玩最纯粹的技术！做最专业的 Spring 民间组织~](http://www.spring4all.com/)
 - Spring 产品:
   - Spring Framework
     - 【Docs】
@@ -30,4 +32,6 @@
       - [Spring Security](https://spring.io/projects/spring-security#learn)
     - 【Guide】
       - [Getting Started · Securing a Web Application](https://spring.io/guides/gs/securing-web/)
+    - 【Community】
+      - 【☆】[社区 Spring Security 从入门到进阶系列教程 | Spring For All](http://www.spring4all.com/article/428)
 ---
