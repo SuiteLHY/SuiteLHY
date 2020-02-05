@@ -28,6 +28,8 @@
     - 学习资源和微项目: 
       - 【☆】[ityouknow/spring-boot-examples: about learning Spring Boot via examples. Spring Boot 教程、技术栈示例代码，快速简单上手教程。](https://github.com/ityouknow/spring-boot-examples)
   - Spring Security
+    - 【Book】
+      - 【☆】[waylau/spring-security-tutorial](https://github.com/SuiteLHY/spring-security-tutorial)
     - 【Docs】
       - [Spring Security](https://spring.io/projects/spring-security#learn)
     - 【Guide】
