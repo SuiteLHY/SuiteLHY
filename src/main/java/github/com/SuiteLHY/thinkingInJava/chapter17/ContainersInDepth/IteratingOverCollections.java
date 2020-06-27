@@ -106,7 +106,7 @@ public class IteratingOverCollections {
     private static <E extends Collection> boolean showIterator(E collection) {
         show("=== Iterator迭代遍历中的正确操作示例： ===");
         show(collection);
-        for (Iterator<Object> iterator = collection.iterator(); iterator.hasNext();) {
+        for (Iterator<?> iterator = collection.iterator(); iterator.hasNext();) {
             Object each;
             each = iterator.next();
             show("-- " + each);
@@ -131,7 +131,7 @@ public class IteratingOverCollections {
         boolean result = true;
         show("=== Iterator迭代遍历中的错误操作警示： ===");
         show(collection);
-        for (Iterator<Object> iterator = collection.iterator(); iterator.hasNext();) {
+        for (Iterator<?> iterator = collection.iterator(); iterator.hasNext();) {
             Object each;
             try {
                 //!ERROR: java.util.ConcurrentModificationException
@@ -169,9 +169,9 @@ public class IteratingOverCollections {
     private static <E extends Collection> boolean showForEach(E collection) {
         show("=== forEach迭代遍历中的正确操作示例： ===");
         show(collection);
+
         for (Iterator<Object> iterator = collection.iterator(); iterator.hasNext();) {
-            Object each;
-            each = iterator.next();
+            final Object each = iterator.next();
             show("-- " + each);
             if (each instanceof String) {
                 // 删除迭代器当前定位的元素（正确操作）
@@ -179,8 +179,10 @@ public class IteratingOverCollections {
                 show("-- 成功删除集合中的元素：" + each);
             }
         }
+
         show(collection);
         show(null);
+
         return true;
     }
 
@@ -226,6 +228,7 @@ public class IteratingOverCollections {
         collection.add("1");
         collection.add("2");
         collection.add("3");
+
         Collection<Object> collection_copy = null;
         try {
             collection_copy = CollectionUtil.deepCopy(collection);
